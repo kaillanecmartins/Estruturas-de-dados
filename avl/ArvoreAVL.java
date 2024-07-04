@@ -137,26 +137,6 @@ public class ArvoreAVL {
        }
    }
    
-   public boolean contains(int valor) {
-		if(this.raiz == null)
-			return false;
-		else
-			return this.contains(this.raiz, valor);
-	}
-	
-   private boolean contains(Nodo no, int valor) {
-        boolean encontrado = false;
-	while (no != null && !encontrado) {
-		if(no.getValor() == valor)
-			encontrado = true;
-		else if(no.getValor() > valor)
-			no = no.getEsquerda();
-		else
-			no = no.getDireita();
-	}
-	return encontrado;
-    }
-   
    public int tamanho(){
        return this.tamanho;
    }
@@ -244,4 +224,16 @@ public class ArvoreAVL {
        novaRaiz.setDireita(raizAntiga);
        this.atualizar(raizAntiga);
    }
+   
+    public void imprimirArvore() {
+        imprimirArvore(raiz);
+    }
+
+    private void imprimirArvore(Nodo nodo) {
+        if (nodo != null) {
+            imprimirArvore(nodo.getEsquerda());
+            System.out.print(nodo.getValor());
+            imprimirArvore(nodo.getDireita());
+        }
+    }
 }
